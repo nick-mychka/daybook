@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       token = encode_token({ user_id: @user.id })
       render json: UserBlueprint.render(@user, token: token), status: :created
     else
-      render json: { error: @user.errors }, status: :unprocessable_entity
+      render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
 
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       token = encode_token({ user_id: @user.id })
       render json: UserBlueprint.render(@user, token: token), status: :created
     else
-      render json: { error: 'Invalid credentials' },
+      render json: { errors: 'Invalid credentials' },
       status: :unprocessable_entity
     end
   end
